@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartChoice PRO</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        header {
+            text-align: center;
+            padding: 50px 20px 20px;
+        }
+        .headline {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+        }
+        .subheadline {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 40px;
+        }
+        .container {
+            max-width: 1900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 40px;
+        }
+        .left-container {
+            flex: 2;
+            padding-right: 20px;
+        }
+        .right-container {
+            flex: 1;
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .right-container h2 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: #000;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        button:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+        .add-product, .remove-product {
+            width: auto;
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        .remove-product {
+            background: #dc3545;
+        }
+        .remove-product:hover {
+            background: #b02a37;
+        }
+        .image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: url('https://via.placeholder.com/600x400?text=Affiliate+Success+Image') no-repeat center;
+            background-size: cover;
+            border-radius: 8px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #f1f1f1;
+            font-size: 0.9rem;
+            color: #555;
+        }
+    </style>
+    <script>
+        function addProduct() {
+            const container = document.getElementById('products-container');
+            const productCount = container.children.length;
+
+            if (productCount >= 5) return alert('Você pode adicionar no máximo 5 produtos.');
+
+            const newProduct = `
+                <div class="product">
+                    <label for="nome_produto_${productCount + 1}">Nome do Produto:</label>
+                    <input type="text" id="nome_produto_${productCount + 1}" name="nome_produto_${productCount + 1}" placeholder="Ex.: GlucoTrust" required>
+
+                    <label for="url_produto_${productCount + 1}">URL do Produto:</label>
+                    <input type="url" id="url_produto_${productCount + 1}" name="url_produto_${productCount + 1}" placeholder="Ex.: https://example.com" required>
+
+                    <label for="categoria_produto_${productCount + 1}">Categoria do Produto:</label>
+                    <select id="categoria_produto_${productCount + 1}" name="categoria_produto_${productCount + 1}" required>
+                        <option value="" disabled selected>Selecione a Categoria</option>
+                        <option value="Saúde e Bem-Estar">Saúde e Bem-Estar</option>
+                        <option value="Finanças e Negócios">Finanças e Negócios</option>
+                        <option value="Relacionamentos">Relacionamentos</option>
+                        <option value="Educação">Educação</option>
+                        <option value="Casa e Decoração">Casa e Decoração</option>
+                        <option value="Tecnologia e Entretenimento">Tecnologia e Entretenimento</option>
+                    </select>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', newProduct);
+        }
+
+        function removeProduct() {
+            const container = document.getElementById('products-container');
+            if (container.children.length > 1) {
+                container.removeChild(container.lastChild);
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="headline">SmartChoice PRO: Escolha o Produto Certo para Anunciar</div>
+        <div class="subheadline">Descubra o produto ideal em segundos e aumente seus ganhos como afiliado.</div>
+    </header>
+
+    <!-- Containers -->
+    <div class="container">
+        <!-- Lado Esquerdo -->
+        <div class="left-container">
+            <div class="image-placeholder"></div>
+        </div>
+
+        <!-- Lado Direito -->
+        <div class="right-container">
+            <h2>Preencha os Dados dos Produtos</h2>
+            <form action="/" method="POST">
+                <div id="products-container">
+                    <!-- Produto 1 -->
+                    <div class="product">
+                        <label for="nome_produto_1">Nome do Produto:</label>
+                        <input type="text" id="nome_produto_1" name="nome_produto_1" placeholder="Ex.: GlucoTrust" required>
+
+                        <label for="url_produto_1">URL do Produto:</label>
+                        <input type="url" id="url_produto_1" name="url_produto_1" placeholder="Ex.: https://example.com" required>
+
+                        <label for="categoria_produto_1">Categoria do Produto:</label>
+                        <select id="categoria_produto_1" name="categoria_produto_1" required>
+                            <option value="" disabled selected>Selecione a Categoria</option>
+                            <option value="Saúde e Bem-Estar">Saúde e Bem-Estar</option>
+                            <option value="Finanças e Negócios">Finanças e Negócios</option>
+                            <option value="Relacionamentos">Relacionamentos</option>
+                            <option value="Educação">Educação</option>
+                            <option value="Casa e Decoração">Casa e Decoração</option>
+                            <option value="Tecnologia e Entretenimento">Tecnologia e Entretenimento</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="button" class="add-product" onclick="addProduct()">+ Adicionar Produto</button>
+                <button type="button" class="remove-product" onclick="removeProduct()">- Remover Produto</button>
+                <button type="submit">Analisar Produtos</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        Esse é um produto do Viver de Gringa. Todos os direitos reservados, 2025.
+    </footer>
+</body>
+</html>
+
+
+
+
+
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Seleção de Produtos</title>
+</head>
+<body>
+    <h1>Seleção de Produtos</h1>
+    <form action="/" method="POST">
+        <h2>Produtos</h2>
+        {% for i in range(1, 6) %}
+        <label for="nome_produto_{{ i }}">Nome do Produto {{ i }}:</label>
+        <input type="text" id="nome_produto_{{ i }}" name="nome_produto_{{ i }}" placeholder="Nome do Produto {{ i }}">
+        <br>
+        
+        <label for="url_produto_{{ i }}">URL do Produto {{ i }}:</label>
+        <input type="url" id="url_produto_{{ i }}" name="url_produto_{{ i }}" placeholder="https://exemplo.com">
+        <br>
+        
+        <label for="categoria_produto_{{ i }}">Categoria do Produto {{ i }}:</label>
+        <select id="categoria_produto_{{ i }}" name="categoria_produto_{{ i }}">
+            <option value="Indefinida">Selecione a categoria</option>
+            <option value="Saúde e Bem-Estar">Saúde e Bem-Estar</option>
+                    <option value="Finanças e Negócios">Finanças e Negócios</option>
+                    <option value="Relacionamentos">Relacionamentos</option>
+                    <option value="Educação">Educação</option>
+                    <option value="Casa e Decoração">Casa e Decoração</option>
+                    <option value="Tecnologia e Entretenimento">Tecnologia e Entretenimento</option>                    
+            </select>
+            <br><br>
+        {% endfor %}
+
+        <button type="submit">Analisar</button>
+    </form>
+</body>
+</html>-->

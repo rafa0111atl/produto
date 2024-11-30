@@ -1,0 +1,898 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>SmartChoice PRO</title>
+    <style>
+        /* Estilo para os drop-downs */
+        .social-grid {
+    display: flex; /* Exibe os itens lado a lado */
+    gap: 20px; /* Espaçamento entre as colunas */
+}
+
+.social-item {
+    text-align: center; /* Centraliza o texto e o dropdown */
+}
+
+label {
+    display: block; /* Garante que o label fique acima do dropdown */
+    margin-bottom: 5px; /* Espaçamento entre o nome e o dropdown */
+}
+
+.custom-dropdown {
+    width: 70px; /* Define uma largura fixa para os dropdowns */
+}
+
+.coluna p {
+            margin-bottom: 15px; /* Adiciona espaço entre os parágrafos */ 
+        }
+
+        .container-linhas { /* Refere-se ao contêiner de Sazonalidade e CTR */
+            display: flex;
+            gap: 20px; /* Espaçamento entre os dois contêineres */
+            justify-content: space-between; /* Garante espaçamento uniforme */
+            margin-bottom: 50px;
+            width: 90%; /* Mesmo alinhamento do contêiner maior */
+            margin: 0 auto; /* Centraliza na tela */
+        }
+
+        .linha {
+    padding: 20px; /* Mesmo padding que o contêiner superior */
+    background-color: #f9f9f9; /* Fundo consistente */
+    border: 1px solid #ddd; /* Borda leve */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Mesma sombra do contêiner superior */
+}
+
+.linha h2 {
+    font-size: 1.5rem; /* Mesmo tamanho do título superior */
+    color: #333; /* Cor padrão do título */
+    font-weight: bold; /* Negrito para consistência */
+    margin-bottom: 15px; /* Espaçamento inferior */
+}
+
+.linha p {
+    font-size: 1rem; /* Tamanho consistente com o contêiner superior */
+    color: #555; /* Cor de texto padrão */
+    line-height: 1.5; /* Espaçamento entre as linhas */
+    margin: 0 0 15px; /* Espaço inferior */
+}
+
+.linha table th, .linha table td {
+    font-size: 1rem; /* Ajusta o tamanho da fonte nas tabelas */
+    color: #555; /* Cor padrão */
+    line-height: 1.5; /* Espaçamento uniforme */
+    padding: 10px; /* Espaçamento interno */
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+.linha table th {
+    font-weight: bold; /* Títulos das colunas em negrito */
+    text-transform: uppercase; /* Letras maiúsculas */
+
+}
+
+        /* Estilo para os dropdowns lado a lado */
+        .dropdown-container {
+            display: flex;
+            gap: 20px; /* Espaço horizontal entre os dropdowns */
+            align-items: center; /* Alinha verticalmente os dropdowns */
+        }
+
+        .dropdown-container select {
+            width: 100px !important; /* Define uma largura fixa de 150px */
+            padding: 5px; /* Espaçamento interno menor */
+            font-size: 1em; /* Tamanho da fonte */
+            box-sizing: border-box; /* Garante que o padding não expanda a largura */
+        }
+
+        /* Estilo para as caixas de texto e botão */
+        .palavras-chave {
+            display: flex;
+            flex-wrap: wrap; /* Permite ajuste em telas menores */
+            gap: 15px; /* Espaçamento entre os elementos */
+            align-items: flex-start;
+        }
+
+        .palavra-chave-item input {
+            flex: 1; /* Ajusta a largura das caixas */
+            min-width: 150px; /* Define uma largura mínima */
+            padding: 8px; /* Espaçamento interno */
+            font-size: 1em;
+            margin-bottom: 10px; /* Espaço inferior entre os inputs */
+        }
+
+        .palavras-chave button {
+            padding: 10px 20px; /* Adiciona espaçamento interno ao botão */
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .palavras-chave button:hover {
+            background-color: #0056b3;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap; /* Permite que os produtos se ajustem em linhas */
+    justify-content: space-between; /* Adiciona espaço uniforme entre os produtos */
+    gap: 20px; /* Espaçamento entre os produtos */
+}
+
+h1, h2, p {
+    margin-left: 0; /* Remove qualquer margem esquerda */
+    padding-left: 0; /* Remove qualquer espaçamento interno à esquerda */
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+.titulo-container {
+    width: 90%; /* Mesma largura do .container */
+    margin: 0 auto; /* Centraliza o conteúdo */
+    padding: 0; /* Remove padding adicional */
+    box-sizing: border-box; /* Ajusta bordas e padding */
+}
+
+.produto-card {
+    flex: 1 1 calc(20% - 20px); /* 20% para 5 colunas, ajustando o gap */
+    box-sizing: border-box; /* Inclui padding e borda na largura total */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+        .produto-card h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .produto-card p {
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+
+        .mensagem-educativa {
+            margin: 20px auto;
+            text-align: center;
+            font-style: italic;
+            color: #555;
+        }
+
+        .container-colunas {
+            max-width: 90%; /* Ajusta para a mesma largura dos produtos */
+            margin: 0 auto; /* Centraliza no meio da tela */
+            padding: 0 15px; /* Espaçamento interno */
+            display: flex;
+            flex-wrap: wrap; /* Permite ajuste em telas menores */
+            gap: 20px; /* Espaçamento entre colunas */
+        }
+
+        .coluna {
+            flex: 1;
+            max-width: calc(33.33% - 20px); /* Para 3 colunas */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            background-color: #f9f9f9; /* Background cinza claro */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .coluna h1 {
+            font-size: 1.5em;
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        .coluna p {
+            margin: 0 0 15px; /* Espaço inferior entre os parágrafos */
+            line-height: 1.5; /* Melhor legibilidade */
+            color: #666;
+        }
+
+        .botao-centralizado {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        select {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        .alertas-cpc {
+            border: 1px solid #f5c6cb;
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .alertas-cpc h4 {
+            margin-top: 0;
+        }
+
+        .alertas-cpc ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .alerta-vermelho {
+            color: red;
+            font-weight: bold;
+        }
+
+        /* Estilos para a seção do Reddit dentro do produto */
+        .reddit-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ccc;
+        }
+
+        .reddit-section p {
+            margin: 5px 0;
+        }
+
+        .reddit-section button {
+            margin-top: 10px;
+        }
+
+        .reddit-results {
+            margin-top: 10px;
+        }
+
+        .reddit-results ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .reddit-results li {
+            margin-bottom: 10px;
+        }
+
+        /* Botão antes de calcular (vermelho) */
+        .botao-vermelho {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Botão após calcular (azul) */
+        .botao-azul {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .produto-card, .coluna {
+                flex: 1 1 100%; /* Para exibir em uma única coluna no mobile */
+            }
+        }
+    </style>
+    
+</head>
+<body>
+
+   
+    
+    <!-- Contêiner Principal -->
+    <div class="titulo-container">
+        <!-- Título Principal -->
+        <h1 style="font-size: 36px; font-weight: bold; text-align: left; margin-bottom: 15px; line-height: 1.0; margin-left: 0;">
+            SmartChoice PRO
+        </h1>
+
+        <!-- Descrição Principal -->
+        <p style="font-size: 20px; text-align: left; margin-bottom: 10px; line-height: 1.2; color: #555; margin-left: 0;">
+            A ferramenta mais poderosa do mercado para afiliados que levam resultados a sério e desejam escolher produtos com alta probabilidade de venda.
+        </p></p></p>
+
+        <!-- Subtítulo -->
+        <h2 style="font-size: 24px; text-align: left; font-weight: bold; margin-bottom: 10px; line-height: 1.0; color: #444; margin-left: 0;">
+            Ranking dos Produtos
+        </h2>
+
+        <!-- Frase Auxiliar -->
+        <p style="font-size: 18px; text-align: left; color: #666; margin-bottom: 10px; line-height: 1.0; margin-left: 0;">
+            Escolha com Inteligência o Produto Campeão
+        </p></p></p></p>
+        
+    </div>
+</body>
+
+    
+    <form method="POST" action="{{ url_for('analisar') }}">
+        <!-- Container de Produtos -->
+        <div class="container">
+            {% for produto in produtos[:5] %}
+            {% set produto_index = loop.index %}
+            <div class="produto-card" id="produto-{{ produto_index }}" data-produto-index="{{ produto_index }}">
+                <h3>{{ produto.nome or 'Produto Desconhecido' }}</h3>
+
+                <input type="hidden" name="nome_produto_{{ produto_index }}" value="{{ produto.nome }}">
+                <p><strong>URL:</strong> <a href="{{ produto.url }}" target="_blank">{{ produto.url }}</a></p>
+                <input type="hidden" name="url_produto_{{ produto_index }}" value="{{ produto.url }}">
+                <p><strong>Categoria:</strong> {{ produto.categoria }}</p>
+                <input type="hidden" name="categoria_produto_{{ produto_index }}" value="{{ produto.categoria }}">
+                <strong>Qualidade da Página:</strong> {{ produto.pontuacao_qualidade_pagina | round(2) }} / 20<br>
+                <strong>Copywriting:</strong> {{ produto.pontuacao_copywriting }} / 20<br>
+                <strong>Benefícios e Ofertas Especiais:</strong> {{ produto.pontuacao_beneficios_ofertas }} / 10<br>
+                <strong>Preço e Valor Percebido:</strong> {{ produto.pontuacao_preco_valor_percebido }} / 15<br>
+                <strong>Faixa de Preço:</strong> {{ produto.pontuacao_faixa_precos }} / 10<br>
+                <strong>Sazonalidade:</strong> {{ produto.pontuacao_sazonalidade }}<br>
+                <strong>CTR (Click-Through Rate):</strong> {{ produto.pontuacao_ctr }}<br>
+                <strong>Pontuação de SEO e Palavras-Chave:</strong> {{ produto.pontuacao_seo_palavras }}<br>
+                &nbsp;&nbsp;&nbsp;<strong>Pontuação de keyword:</strong> {{ produto.pontuacao_keyword }}<br>
+                &nbsp;&nbsp;&nbsp;<strong>Pontuação de Permissão:</strong> {{ produto.pontuacao_permissao }}<br>
+                &nbsp;&nbsp;&nbsp;<strong>Pontuação de Volume de Busca:</strong> {{ produto.pontuacao_volume_busca }}<br>
+                &nbsp;&nbsp;&nbsp;<strong>Pontuação de Concorrência CPC:</strong> {{ produto.pontuacao_concorrencia_cpc | default(0) | round(2) }}<br>
+                &nbsp;&nbsp;&nbsp;<strong>Pontuação de SEO Básico:</strong> {{ produto.pontuacao_seo_basico }}<br>
+                <strong>Pontuação de Redes Sociais:</strong> {{ produto.pontuacao_redes_sociais }} / 4<br>
+
+        
+                <p></p><p></p>
+                <strong>Pontuação Total:</strong> {{ produto.pontuacao_total }}<br>
+                
+
+               <!-- Alertas de CPC -->
+               {% if produto.cpc_alertas %}
+               <div class="alertas-cpc">
+                   <h4>⚠️ Alertas de CPC</h4>
+                   <ul>
+                       {% for alerta in produto.cpc_alertas %}
+                       <li>{{ alerta }}</li>
+                       {% endfor %}
+                   </ul>
+               </div>
+               {% endif %}
+
+               <div id="alerta-trafego-{{ produto_index }}" class="alerta-vermelho" style="display: none;"></div>
+               <hr>
+               <!-- Configuração de Palavras-Chave -->
+                <h4>Configuração de Palavras-Chave</h4>
+                <div class="dropdown-container">
+                    <div>
+                        <p><strong>Permite Tráfego Pago?</strong></p>
+                        <select name="permissao_trafego_pago_{{ produto_index }}" onchange="verificarPermissaoTrafego('{{ produto_index }}')">
+                            <option value="true" {% if produto.permissao_trafego_pago %}selected{% endif %}>Sim</option>
+                            <option value="false" {% if not produto.permissao_trafego_pago %}selected{% endif %}>Não</option>
+                        </select>
+                    </div>
+                    <div>
+                        <p><strong>Permite Fundo de Funil?</strong></p>
+                        <select name="permissao_fundo_funil_{{ produto_index }}">
+                            <option value="true" {% if produto.permissao_fundo_funil %}selected{% endif %}>Sim</option>
+                            <option value="false" {% if not produto.permissao_fundo_funil %}selected{% endif %}>Não</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="palavras-chave">
+                    <h4>Palavras-Chave e Detalhes</h4>
+                    <div id="lista-palavras-chave-{{ produto_index }}">
+                        {% for palavra in produto.palavras_chave %}
+                        <div class="palavra-chave-item" data-index="{{ loop.index }}">
+                            <input type="text" name="palavra-chave_{{ produto_index }}[]" value="{{ palavra.palavra }}" placeholder="Palavra-chave">
+                            <input type="number" name="volume_{{ produto_index }}[]" value="{{ palavra.volume }}" placeholder="Volume de Busca">
+                            <input type="number" step="0.01" name="cpc_{{ produto_index }}[]" value="{{ palavra.cpc }}" placeholder="CPC">
+                            <button type="button" class="btn-excluir" onclick="removerCampo(this)">❌</button>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button type="button" onclick="adicionarCampo(this)">Adicionar Palavra-Chave</button>
+                </div>
+
+                <hr>
+
+
+                <div style="display: flex; justify-content: space-between; align-items: center; border: 1px solid #ccc; padding: 10px; background-color: #fff; border-radius: 8px;">
+
+                    <!-- Lado Esquerdo -->
+                    <div style="flex: 1; margin-right: 50px;">
+                
+                        <!-- Redes Sociais -->
+                        <div style="margin-bottom: 10px;">
+                            <h4>Tem Redes Sociais?</h4>
+                            <div style="display: flex; justify-content: space-between; margin-top: 5px;">
+                                <div style="margin-right: 10px;">
+                                    <label for="instagram_presente_{{ produto_index }}">Instagram:</label>
+                                    <select name="instagram_presente_{{ produto_index }}" class="custom-dropdown">
+                                        <option value="nao" {% if produto.instagram_presente == 'nao' %}selected{% endif %}>Não</option>
+                                        <option value="sim" {% if produto.instagram_presente == 'sim' %}selected{% endif %}>Sim</option>
+                                    </select>
+                                </div>
+                                <div style="margin-right: 10px;">
+                                    <label for="facebook_presente_{{ produto_index }}">Facebook:</label>
+                                    <select name="facebook_presente_{{ produto_index }}" class="custom-dropdown">
+                                        <option value="nao" {% if produto.facebook_presente == 'nao' %}selected{% endif %}>Não</option>
+                                        <option value="sim" {% if produto.facebook_presente == 'sim' %}selected{% endif %}>Sim</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="youtube_presente_{{ produto_index }}">YouTube:</label>
+                                    <select name="youtube_presente_{{ produto_index }}" class="custom-dropdown">
+                                        <option value="nao" {% if produto.youtube_presente == 'nao' %}selected{% endif %}>Não</option>
+                                        <option value="sim" {% if produto.youtube_presente == 'sim' %}selected{% endif %}>Sim</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <!-- Postagens Recentes -->
+                        <div>
+                            <h4>Postagem com Menos de 30 Dias?</h4>
+                            <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                                <div style="margin-right: 10px;">
+                                    <label for="instagram_postagem_{{ produto_index }}">Instagram:</label>
+                                    <select name="instagram_postagem_{{ produto_index }}" class="custom-dropdown">
+                                        <option value="nao" {% if produto.instagram_postagem == 'nao' %}selected{% endif %}>Não</option>
+                                        <option value="sim" {% if produto.instagram_postagem == 'sim' %}selected{% endif %}>Sim</option>
+                                    </select>
+                                </div>
+                                <div style="margin-right: 10px;">
+                                    <label for="facebook_postagem_{{ produto_index }}">Facebook:</label>
+                                    <select name="facebook_postagem_{{ produto_index }}" class="custom-dropdown">
+                                        <option value="nao" {% if produto.facebook_postagem == 'nao' %}selected{% endif %}>Não</option>
+                                        <option value="sim" {% if produto.facebook_postagem == 'sim' %}selected{% endif %}>Sim</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="youtube_postagem_{{ produto_index }}">YouTube:</label>
+                                    <select name="youtube_postagem_{{ produto_index }}" class="custom-dropdown">
+                                        <option value="nao" {% if produto.youtube_postagem == 'nao' %}selected{% endif %}>Não</option>
+                                        <option value="sim" {% if produto.youtube_postagem == 'sim' %}selected{% endif %}>Sim</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Lado Direito -->
+                    <div style="flex: 0.5; display: flex; flex-direction: column; justify-content: center; align-items: center; border-left: 1px solid #ccc; padding-left: 10px;">
+                        <h4></h4>
+                        <label for="engajamento_{{ produto_index }}">Engajamento:</label>
+                        <select name="engajamento_{{ produto_index }}" class="custom-dropdown">
+                            <option value="baixo" {% if produto.engajamento == 'baixo' %}selected{% endif %}>Baixo</option>
+                            <option value="medio" {% if produto.engajamento == 'medio' %}selected{% endif %}>Médio</option>
+                            <option value="alto" {% if produto.engajamento == 'alto' %}selected{% endif %}>Alto</option>
+                        </select>
+                    </div>
+                
+                </div>
+                
+        
+
+
+                    
+                    
+                    <hr>
+                   
+                <!-- Seção do Reddit -->
+                <div class="">
+                    <p><strong>Pontuação Reddit:</strong> 
+                        <span id="pontuacao-reddit-{{ loop.index }}">
+                            {% if produto.reddit_pontuacao is not none %}
+                                {{ produto.reddit_pontuacao }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </span>
+                    </p>
+                </div>
+
+                <!-- Verifique o nome do produto -->
+<p><strong>Nome do Produto:</strong> 
+    {{ produto.nome or 'Desconhecido' }}
+</p>
+
+<!-- Verifique a categoria -->
+<p><strong>Categoria:</strong> 
+    {{ produto.categoria or 'Categoria Não Definida' }}
+</p>
+                
+                <p><strong>Pontuação Final Total:</strong>
+                    <span id="pontuacao-final-{{ loop.index }}">
+                        {% if produto.get('reddit_pontuacao') is not none %}
+                            {{ (produto.pontuacao_total + produto.reddit_pontuacao) | round(2) }}
+                        {% else %}
+                            {{ produto.pontuacao_total }}
+                        {% endif %}
+                    </span>
+                </p>
+                <button id="calcular-botao-{{ loop.index }}" class="botao-vermelho" 
+                        type="button" 
+                        onclick="calcularComReddit({{ loop.index }}, '{{ produto.nome }}', '{{ produto.categoria }}', {{ produto.pontuacao_total }})">
+                        Calcular com Reddit
+                </button>
+
+               
+                    
+                <div>
+                    <h4>Subreddits Pontuados:</h4>
+                    <ul id="subreddits-pontuados-{{ loop.index }}">
+                        {% if produto.subreddits_com_pontuacao %}
+                            {% for subreddit in produto.subreddits_com_pontuacao|sort(attribute='engajamento', reverse=True) %}
+                            <li>
+                                <strong>{{ subreddit.subreddit }}</strong> - 
+                                Título: {{ subreddit.titulo }},
+                                Votos: {{ subreddit.votos }},
+                                Comentários: {{ subreddit.comentarios }},
+                                Menções: {{ subreddit.mencoes }},
+                                Engajamento: {{ subreddit.engajamento }}
+                            </li>
+                            {% endfor %}
+                        {% else %}
+                            <li>Nenhum subreddit pontuado encontrado.</li>
+                        {% endif %}
+                    </ul>
+                </div>
+                
+                
+                
+
+                <!-- Frase de Orientação Reddit-->
+                <div id="frase-orientacao-{{ loop.index }}">
+                    {% if produto.get('reddit_pontuacao') is not none %}
+                        {% if produto.reddit_pontuacao <= 2 %}
+                            <p>Para o produto {{ produto.nome }}, a pontuação Reddit reflete um baixo nível de engajamento, relevância e menções nas comunidades relacionadas ao nicho.</p>
+                        {% elif produto.reddit_pontuacao <= 4 %}
+                            <p>Para o produto {{ produto.nome }}, a pontuação Reddit reflete um nível moderado de engajamento, relevância e menções nas comunidades relacionadas ao nicho.</p>
+                        {% else %}
+                            <p>Para o produto {{ produto.nome }}, a pontuação Reddit reflete um alto nível de engajamento, relevância e menções nas comunidades relacionadas ao nicho.</p>
+                        {% endif %}
+                    {% else %}
+                        <p>Ainda não calculado. Clique em "Calcular com Reddit" para obter os resultados.</p>
+                    {% endif %}
+                </div>
+
+                
+                
+                
+
+                <!-- Resultados do Reddit -->
+                <div id="resultados-reddit-{{ loop.index }}" class="reddit-results">
+                    <ul id="subreddits-avaliados-{{ loop.index }}">
+                        <!-- Os resultados do Reddit serão inseridos aqui dinamicamente -->
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="mensagem-educativa">
+            Produtos com alto CPC podem ser lucrativos, mas exigem estratégias avançadas. Explore palavras-chave alternativas para reduzir custos e maximizar resultados.
+        </div>
+   
+        <!-- Botão Principal para Calcular -->
+        <div class="botao-centralizado">
+            <button type="submit">Calcular</button>
+        </div>
+    </form>
+
+    <script>
+        // Função para adicionar um novo campo de palavra-chave
+            function adicionarCampo(botao) {
+                const container = botao.previousElementSibling; // Container das palavras-chave
+                const produtoIndex = botao.closest('.palavras-chave').getAttribute('data-produto-index');
+
+                // Criar o novo campo
+                const novoCampo = document.createElement('div');
+                novoCampo.classList.add('palavra-chave-item');
+                novoCampo.innerHTML = `
+                    <input type="text" name="palavra-chave_${produtoIndex}[]" placeholder="Palavra-chave">
+                    <input type="number" name="volume_${produtoIndex}[]" placeholder="Volume de Busca">
+                    <input type="number" step="0.01" name="cpc_${produtoIndex}[]" placeholder="CPC">
+                    <button type="button" class="btn-excluir" onclick="removerCampo(this)">❌</button>
+                `;
+
+                // Adicionar o campo ao container
+                container.appendChild(novoCampo);
+            }
+
+            // Função para remover um campo existente
+            function removerCampo(botao) {
+                const campo = botao.parentElement; // Div contendo o campo
+                campo.remove(); // Remover o campo
+            }
+
+
+
+        function adicionarCampo(button) {
+            const produtoDiv = button.closest('.produto-card');
+            const produtoIndex = produtoDiv.getAttribute('data-produto-index');
+            const palavrasChaveDiv = produtoDiv.querySelector('.palavras-chave');
+
+            const div = document.createElement("div");
+            div.className = "palavra-chave-item";
+            div.innerHTML = `
+                <input type="text" name="palavra-chave_${produtoIndex}[]" placeholder="Palavra-chave">
+                <input type="number" name="volume_${produtoIndex}[]" placeholder="Volume de Busca">
+                <input type="number" step="0.01" name="cpc_${produtoIndex}[]" placeholder="CPC">
+            `;
+
+            palavrasChaveDiv.appendChild(div);
+        }
+
+        function verificarPermissaoTrafego(produtoIndex) {
+            const permissaoSelect = document.querySelector(`select[name='permissao_trafego_pago_${produtoIndex}']`);
+            const alertaDiv = document.getElementById(`alerta-trafego-${produtoIndex}`);
+            const produtoDiv = document.getElementById(`produto-${produtoIndex}`);
+
+            if (permissaoSelect.value === 'false') {
+                alertaDiv.textContent = 'Abandone o produto e busque outro.';
+                alertaDiv.style.display = 'block';
+                const palavrasChaveDiv = produtoDiv.querySelector('.palavras-chave');
+                if (palavrasChaveDiv) palavrasChaveDiv.style.display = 'none';
+                const adicionarButton = produtoDiv.querySelector('button');
+                if (adicionarButton) adicionarButton.style.display = 'none';
+            } else {
+                alertaDiv.textContent = '';
+                alertaDiv.style.display = 'none';
+                const palavrasChaveDiv = produtoDiv.querySelector('.palavras-chave');
+                if (palavrasChaveDiv) palavrasChaveDiv.style.display = 'block';
+                const adicionarButton = produtoDiv.querySelector('button');
+                if (adicionarButton) adicionarButton.style.display = 'inline';
+            }
+        }
+
+        // Maximo 5 produtos
+        const maxProdutos = 5;
+        function verificarLimiteProdutos() {
+            const produtos = document.querySelectorAll('.produto-card');
+            if (produtos.length >= maxProdutos) {
+                alert('Você só pode analisar até 5 produtos.');
+                return false;
+            }
+            return true;
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+        const produtos = document.querySelectorAll('.produto-card');
+        if (produtos.length === 0) {
+            const mensagem = document.createElement('div');
+            mensagem.className = 'mensagem-educativa';
+            mensagem.textContent = 'Nenhum produto selecionado. Por favor, adicione até 5 produtos para análise.';
+            document.querySelector('.container').appendChild(mensagem);
+        }
+    });
+
+        // Inicializa a visibilidade dos alertas ao carregar a página
+        document.addEventListener("DOMContentLoaded", () => {
+            const selects = document.querySelectorAll('select[name^="permissao_trafego_pago_"]');
+            selects.forEach(select => {
+                const index = select.name.split('_').pop();
+                const alerta = document.getElementById(`alerta-trafego-${index}`);
+                if (select.value === "false") {
+                    alerta.textContent = 'Abandone o produto e busque outro.';
+                    alerta.style.display = "block";
+                    const produtoDiv = document.getElementById(`produto-${index}`);
+                    const palavrasChaveDiv = produtoDiv.querySelector('.palavras-chave');
+                    if (palavrasChaveDiv) palavrasChaveDiv.style.display = 'none';
+                    const adicionarButton = produtoDiv.querySelector('button');
+                    if (adicionarButton) adicionarButton.style.display = 'none';
+                } else {
+                    alerta.textContent = '';
+                    alerta.style.display = "none";
+                    const produtoDiv = document.getElementById(`produto-${index}`);
+                    const palavrasChaveDiv = produtoDiv.querySelector('.palavras-chave');
+                    if (palavrasChaveDiv) palavrasChaveDiv.style.display = 'block';
+                    const adicionarButton = produtoDiv.querySelector('button');
+                    if (adicionarButton) adicionarButton.style.display = 'inline';
+                }
+            });
+        });
+
+        function calcularComReddit(index, nomeProduto, categoriaProduto, pontuacaoTotal) {
+    if (!nomeProduto || !categoriaProduto) {
+        alert('Nome do produto ou categoria não definidos. Verifique os dados e tente novamente.');
+        return;
+    }
+
+    fetch('/analisar_com_reddit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            produtos: [
+                {
+                    nome: nomeProduto,
+                    categoria: categoriaProduto,
+                },
+            ],
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Resposta do servidor:', data);
+
+            if (data.produtos && data.produtos.length > 0) {
+                const produto = data.produtos[0];
+
+                // Atualizar pontuação Reddit no frontend
+                const pontuacaoElement = document.getElementById(`pontuacao-reddit-${index}`);
+                if (produto.reddit_pontuacao) {
+                    pontuacaoElement.textContent = produto.reddit_pontuacao;
+                } else {
+                    pontuacaoElement.textContent = 'Sem resultado';
+                }
+
+                // Atualizar pontuação final
+                document.getElementById(`pontuacao-final-${index}`).textContent = (
+                    pontuacaoTotal + (produto.reddit_pontuacao || 0)
+                ).toFixed(2);
+
+                // Atualizar frase de orientação Reddit
+                const fraseDiv = document.getElementById(`frase-orientacao-${index}`);
+                if (produto.reddit_pontuacao) {
+                    if (produto.reddit_pontuacao <= 4) {
+                        fraseDiv.innerHTML = `
+                            <p>Para o produto ${nomeProduto}, a pontuação Reddit reflete um baixo nível de engajamento, relevância e menções nas comunidades relacionadas ao nicho. 
+                            Isso indica um interesse orgânico muito limitado do público potencial.</p>
+                        `;
+                    } else if (produto.reddit_pontuacao <= 9) {
+                        fraseDiv.innerHTML = `
+                            <p>Para o produto ${nomeProduto}, a pontuação Reddit reflete um nível moderado de engajamento, relevância e menções nas comunidades relacionadas ao nicho. 
+                            Isso indica que o público potencial está razoavelmente engajado e interessado, dependendo da estratégia adotada.</p>
+                        `;
+                    } else {
+                        fraseDiv.innerHTML = `
+                            <p>Para o produto ${nomeProduto}, a pontuação Reddit reflete um alto nível de engajamento, relevância e menções nas comunidades relacionadas ao nicho. 
+                            Isso indica que o público potencial está altamente engajado e interessado, sugerindo um grande potencial de vendas.</p>
+                        `;
+                    }
+                } else {
+                    fraseDiv.innerHTML = ''; // Remove qualquer frase existente se não houver pontuação
+                }
+
+                // Atualizar lista de subreddits pontuados no frontend
+                const subredditList = document.getElementById(`subreddits-pontuados-${index}`);
+                subredditList.innerHTML = '';
+                if (produto.subreddits_com_pontuacao && produto.subreddits_com_pontuacao.length > 0) {
+                    produto.subreddits_com_pontuacao.forEach(subreddit => {
+                        const li = document.createElement('li');
+                        li.textContent = subreddit.subreddit; // Exibe apenas o nome do subreddit
+                        subredditList.appendChild(li);
+                    });
+                } else {
+                    const li = document.createElement('li');
+                    li.textContent = 'Nenhum subreddit pontuado encontrado.';
+                    subredditList.appendChild(li);
+                }
+
+                // Alterar a classe do botão para azul
+                const botao = document.getElementById(`calcular-botao-${index}`);
+                botao.classList.remove('botao-vermelho');
+                botao.classList.add('botao-azul');
+                botao.textContent = 'Recalcular com Reddit'; // Atualiza o texto do botão
+
+            } else {
+                alert('Nenhum dado retornado do Reddit.');
+            }
+        })
+        .catch((error) => {
+            console.error('Erro ao calcular Reddit:', error);
+            alert('Erro ao calcular Reddit. Verifique o console para mais detalhes.');
+        });
+}
+
+    </script>
+
+
+    
+    <!-- Frases -->
+    {% if frases_custo_beneficio %}
+    <div class="container-colunas" style="margin-bottom: 50px;"> <!-- Adicionando o padding inferior -->
+        <div class="coluna">
+            <h1>Custo x Benefício</h1>
+            {% for frase in frases_custo_beneficio %}
+            <p>{{ frase|safe }}</p>
+            {% endfor %}
+        </div>
+        <div class="coluna">
+            <h1>Pontuação Total</h1>
+            {% for frase in frases_pontuacao_total %}
+            <p>{{ frase|safe }}</p>
+            {% endfor %}
+        </div>
+        <div class="coluna">
+            <h1>Conclusão</h1>
+            {% for frase in frases_conclusao %}
+            <p>{{ frase|safe }}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+   <!-- Novos contêineres - Sazonalidade e CTR -->
+   <div class="container-linhas" style="display: flex; gap: 20px; justify-content: space-between;">
+    <!-- Contêiner de Sazonalidade -->
+    <div class="linha" style="flex: 1; margin-bottom: 50px; padding: 20px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px;">
+        <h2>Sazonalidade</h2>
+        <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
+            <thead>
+                <tr>
+                    <th style="text-align: left; padding: 10px; border-bottom: 1px solid #ddd; width: 10%; text-transform: uppercase;">Produto</th>
+                    <th style="text-align: center; padding: 10px; border-bottom: 1px solid #ddd; width: 15%; text-transform: uppercase;">Pontuação</th>
+                    <th style="text-align: left; padding: 10px; border-bottom: 1px solid #ddd; width: 55%; text-transform: uppercase;">Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produto in produtos %}
+                <tr>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ produto.nome }}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: center;">{{ produto.pontuacao_sazonalidade }}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ produto.descricao_sazonalidade }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Contêiner de CTR -->
+    <div class="linha" style="flex: 1; margin-bottom: 50px; padding: 20px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px;">
+        <h2>CTR</h2>
+        <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
+            <thead>
+                <tr>
+                    <th style="text-align: left; padding: 10px; border-bottom: 1px solid #ddd; width: 10%; text-transform: uppercase;">Produto</th>
+                    <th style="text-align: center; padding: 10px; border-bottom: 1px solid #ddd; width: 15%; text-transform: uppercase;">Pontuação CTR</th>
+                    <th style="text-align: left; padding: 10px; border-bottom: 1px solid #ddd; width: 55%; text-transform: uppercase;">Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produto in produtos %}
+                <tr>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ produto.nome }}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd; text-align: center;">{{ produto.pontuacao_ctr }}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ produto.descricao_ctr }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    
+    <style>
+
+    </style>
+    
+    
+    {% endif %}
+</body>
+</html>

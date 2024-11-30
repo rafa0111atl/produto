@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado da Análise</title>
+</head>
+<body>
+    <h1>Resultado da Análise dos Produtos</h1>
+    <ul>
+        {% for produto in produtos %}
+        <li>
+            <strong>Nome:</strong> {{ produto.nome }}<br>
+            <strong>URL:</strong> <a href="{{ produto.url }}" target="_blank">{{ produto.url }}</a><br>
+            <strong>Qualidade da Página:</strong> {{ produto.pontuacao_qualidade_pagina }} / 20<br>
+            <strong>Copywriting:</strong> {{ produto.pontuacao_copywriting }} / 20<br>
+            <strong>Benefícios e Ofertas Especiais:</strong> {{ produto.pontuacao_beneficios_ofertas }} / 10<br>
+            <strong>Faixa de Preço:</strong> {{ produto.pontuacao_faixa_precos }} / 10<br>
+            <strong>Volume de Busca e Interesse:</strong> {{ produto.pontuacao_volume_busca }}<br>
+            <strong>Sazonalidade:</strong> {{ produto.descricao_sazonalidade }}<br>
+            <strong>Permissão para Tráfego Pago:</strong> {{ produto.permissao_trafego_pago }}<br>
+            <strong>Pode Fundo de Funil:</strong> {{ produto.fundo_funil }}<br>
+            <strong>Pontuação Total:</strong> {{ produto.pontuacao_total }}
+        </li>
+        <hr>
+        {% endfor %}
+    </ul>
+</body>
+</html>
